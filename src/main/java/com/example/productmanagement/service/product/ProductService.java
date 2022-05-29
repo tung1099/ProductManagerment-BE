@@ -1,7 +1,8 @@
-package com.example.productmanagement.service;
+package com.example.productmanagement.service.product;
 
 import com.example.productmanagement.model.Product;
 import com.example.productmanagement.repository.IProductRepository;
+import com.example.productmanagement.service.product.IProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

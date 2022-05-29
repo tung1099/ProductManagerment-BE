@@ -1,7 +1,9 @@
 package com.example.productmanagement.controller;
 
+import com.example.productmanagement.model.Category;
 import com.example.productmanagement.model.Product;
-import com.example.productmanagement.service.IProductService;
+import com.example.productmanagement.service.category.ICategoryService;
+import com.example.productmanagement.service.product.IProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -16,9 +18,16 @@ public class ProductController {
     @Autowired
     private IProductService productService;
 
+    @Autowired
+    private ICategoryService categoryService;
+
+    @ModelAttribute("category")
+    public Iterable<Category> categories(){
+        return categoryService.findAll();
+    }
 
     @GetMapping
-    public ResponseEntity<Iterable<Product>> findAll(@RequestParam(name = "q") Optional<String> q) {
+    public ResponseEntity<Iterable<Product>> findAll() {
         Iterable<Product> products = productService.findAll();
         return new ResponseEntity<>(products, HttpStatus.OK);
     }
