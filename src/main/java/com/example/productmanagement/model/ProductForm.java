@@ -1,15 +1,10 @@
 package com.example.productmanagement.model;
 
 import lombok.Data;
+import org.springframework.web.multipart.MultipartFile;
 
-import javax.persistence.*;
-
-@Entity
-@Table(name = "products")
 @Data
-public class Product {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+public class ProductForm {
     private Long id;
 
     private String name;
@@ -18,16 +13,14 @@ public class Product {
 
     private String description;
 
-    private String image;
+    private MultipartFile image;
 
-    @ManyToOne
-    @JoinColumn(name = "category_id")
     private Category category;
 
-    public Product() {
+    public ProductForm() {
     }
 
-    public Product(Long id, String name, double price, String description, String image,Category category) {
+    public ProductForm(Long id, String name, double price, String description, MultipartFile image, Category category) {
         this.id = id;
         this.name = name;
         this.price = price;
@@ -36,20 +29,12 @@ public class Product {
         this.category = category;
     }
 
-    public Product(String name, double price, String description, String image,Category category) {
+    public ProductForm(String name, double price, String description, MultipartFile image, Category category) {
         this.name = name;
         this.price = price;
         this.description = description;
         this.image = image;
         this.category = category;
-    }
-
-    public String getImage() {
-        return image;
-    }
-
-    public void setImage(String image) {
-        this.image = image;
     }
 
     public Long getId() {
@@ -82,6 +67,14 @@ public class Product {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public MultipartFile getImage() {
+        return image;
+    }
+
+    public void setImage(MultipartFile image) {
+        this.image = image;
     }
 
     public Category getCategory() {
